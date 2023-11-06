@@ -83,8 +83,6 @@ def parsing(image_path=None, net=bisenet):
     img = torch.unsqueeze(img, 0)
     out = net(img)[0]
     parsing = out.squeeze(0).cpu().detach().numpy().argmax(0) 
-               
-            # rematch label for SEAN implement
     parsing = parsing + 100
     parsing[parsing == 100] = 0
     parsing[parsing == 101] = 1
